@@ -8,7 +8,7 @@ function App() {
 
   return (
     <>
-      <h1>thic tac toe</h1>
+      <h1>thic tac toe by falashree</h1>
     </>
   )
 }
