@@ -6,19 +6,46 @@ const useTicTacToe = () => {
   const [board, setBoard] = useState(initialBoard());
   const [isNext, setIsNext] = useState(true);
 
-  const WINNING_PATTERNS = [];
+  const WINNING_PATTERNS = [
 
-  const calculateWinner = () => {
-    // Add your winner calculation logic here
-  };
+    [0,1,2],
+    [3,4,5],
+    [6,7,8],
+    [0,3,6],
+    [1,4,7],
+    [2,5,8],
+    [0,4,8],
+    [2,4,6],
+  ];
+
+  const calculateWinner = (currentBoard) => {
+    for (let i = 0; i < WINNING_PATTERNS.length; i++) {
+        const [a,b,c]=WINNING_PATTERNS[i];
+        if(currentBoard[a] && currentBoard[a]===currentBoard[b] && currentBoard[a]===currentBoard[c] ){
+            return currentBoard[a]
+        }
+        
+    }
+    return null;
+};
 
   const handleClick = (index) => {
-    // Add your handle click logic here
-  };
+    const winner = calculateWinner(board);
+    console.log(winner);
+    if(winner||board[index]) return
+
+    const newBoard =[...board]
+    newBoard[index]=isNext?"X":"O"
+    setBoard(newBoard);
+    setIsNext(!isNext)
+};
 
   const getStatusMessage = () => {
-    // Add your status message logic here
-  };
+    const winner=calculateWinner(board);
+        if(winner) return (`Player ${winner} wins!!!`);
+        if (!board.includes(null)) return ("its a draw!!");
+        return `Player ${isNext ? "X":"O"} turn`;
+};
 
   const resetGame = () => {
     setBoard(initialBoard());

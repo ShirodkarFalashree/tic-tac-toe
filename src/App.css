@@ -31,7 +31,7 @@ body {
   transition: background-color 0.3s ease-in-out;
 }
 .cell:hover{
-  background-color: #646464;
+  background-color: #adacac;
 }
 
 .status button{
